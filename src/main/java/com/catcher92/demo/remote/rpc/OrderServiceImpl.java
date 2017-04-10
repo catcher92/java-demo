@@ -1,9 +1,6 @@
 package com.catcher92.demo.remote.rpc;
 
-import java.rmi.RemoteException;
-import java.rmi.server.UnicastRemoteObject;
-import java.util.ArrayList;
-import java.util.List;
+import org.apache.hadoop.io.ArrayWritable;
 
 /**
  * Created by caoxuedong on 2017/4/6.
@@ -11,21 +8,20 @@ import java.util.List;
 public class OrderServiceImpl implements OrderService {
 
     @Override
-    public List<Order> getAllOrder() {
-        List<Order> orderList = new ArrayList<>();
-
+    public ArrayWritable getAllOrder() {
+        ArrayWritable arrayWritable = new OrderArrayWritable();
         Order order = new Order();
         order.setId(1);
         order.setUsername("张三");
         order.setGoodname("商品1");
-        orderList.add(order);
 
         Order order2 = new Order();
         order2.setId(2);
         order2.setUsername("李四");
         order2.setGoodname("商品2");
-        orderList.add(order2);
-        return orderList;
+
+        arrayWritable.set(new Order[]{order, order2});
+        return arrayWritable;
     }
 
     @Override
