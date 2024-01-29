@@ -5,29 +5,7 @@ import com.google.common.base.Joiner;
 import java.util.ArrayList;
 import java.util.List;
 
-class IndexElement {
-    private final String name;
-
-    public IndexElement(String name) {
-        this.name = name;
-    }
-
-    public boolean needBalance() {
-        return !name.endsWith("_");
-    }
-
-    public boolean canBalance(IndexElement e) {
-        String name1 = name.endsWith("'") ? name.substring(0, name.length() - 1) : name;
-        String name2 = e.name.endsWith("'") ? e.name.substring(0, e.name.length() - 1) : e.name;
-        return !name.equals(e.name) && name1.equals(name2);
-    }
-
-    @Override
-    public String toString() {
-        return name;
-    }
-}
-public class ElementBalancer {
+public class IndexBalancer {
     public static void main(String[] args) {
         List<IndexElement> elements = new ArrayList<>();
 
